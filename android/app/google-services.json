@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "866239185020",
+    "firebase_url": "https://convertor-b95b9.firebaseio.com",
+    "project_id": "convertor-b95b9",
+    "storage_bucket": "convertor-b95b9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:866239185020:android:08e9fe9b0a01acfcbf49f9",
+        "android_client_info": {
+          "package_name": "com.athulpulickal.convertor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "866239185020-cejb21hi02e304jruftl2iirl2albid1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNKRkYDEwqrqDqxq4DSmWnfpf5V6r9VEE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "866239185020-cejb21hi02e304jruftl2iirl2albid1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
