@@ -10,3 +10,8 @@ Begginner project
 ```
 flutter run 
 ```
+
+- to build the app 
+```
+flutter build apk
+```
