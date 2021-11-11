@@ -35,7 +35,7 @@ void getdata() async {
     for (String st in names) {
       var convs;
       convs = storage.getItem(st);
-      topics['Your Conversions'][st] = Conversion(2, [
+      topics['Your Conversions']![st] = Conversion(2, [
         for (String i in convs.keys)
           Method(i, "", turnit(convs[i]['equations']),
               turndouble(convs[i]['factors']))
@@ -48,7 +48,7 @@ void getCurrency() async {
   await storage.ready;
   var convs;
   convs = storage.getItem('Currency') ?? {};
-  topics['Daily Life']['Currency'] = Conversion(2, [
+  topics['Daily Life']!['Currency'] = Conversion(2, [
     for (String i in convs.keys)
       Method(
           i, "", turnit(convs[i]['equations']), turndouble(convs[i]['factors']))

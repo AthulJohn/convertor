@@ -18,13 +18,10 @@ class _ConversionCardState extends State<ConversionCard> {
   }
 
   bool isNumeric(String s) {
-    if (s == null) {
-      return false;
-    }
     return double.tryParse(s) != null;
   }
 
-  TextEditingController text;
+  TextEditingController text = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -141,24 +138,24 @@ class _ConversionCardState extends State<ConversionCard> {
                                       icon: Icon(Icons.keyboard_arrow_up),
                                       underline: Container(),
                                       value: dropint[widget.i.index],
-                                      onChanged: (val) {
+                                      onChanged: (int? val) {
                                         setState(() {
                                           //dropval[i.index] =conversions[i.no].methods[val].name;
-                                          dropint[widget.i.index] = val;
+                                          dropint[widget.i.index] = val ?? 0;
                                         });
                                       },
                                       items: [
                                         for (int j = 0;
                                             j <
-                                                topics[widget.i.type]
-                                                        [widget.i.name]
+                                                topics[widget.i.type]![
+                                                        widget.i.name]
                                                     .methods
                                                     .length;
                                             j++)
                                           DropdownMenuItem(
                                               value: j,
                                               child: Text(
-                                                '${topics[widget.i.type][widget.i.name].methods[j].name}',
+                                                '${topics[widget.i.type]![widget.i.name].methods[j].name}',
                                                 style: TextStyle(
                                                     fontSize: 18,
                                                     fontWeight:
@@ -186,24 +183,24 @@ class _ConversionCardState extends State<ConversionCard> {
                                       icon: Icon(Icons.keyboard_arrow_down),
                                       underline: Container(),
                                       value: dropint2[widget.i.index],
-                                      onChanged: (val) {
+                                      onChanged: (int? val) {
                                         setState(() {
                                           //dropval2[i.index] =conversions[i.no].methods[val].name;
-                                          dropint2[widget.i.index] = val;
+                                          dropint2[widget.i.index] = val ?? 0;
                                         });
                                       },
                                       items: [
                                         for (int j = 0;
                                             j <
-                                                topics[widget.i.type]
-                                                        [widget.i.name]
+                                                topics[widget.i.type]![
+                                                        widget.i.name]
                                                     .methods
                                                     .length;
                                             j++)
                                           DropdownMenuItem(
                                               value: j,
                                               child: Text(
-                                                '${topics[widget.i.type][widget.i.name].methods[j].name}',
+                                                '${topics[widget.i.type]![widget.i.name].methods[j].name}',
                                                 style: TextStyle(
                                                     fontSize: 18,
                                                     fontWeight:
@@ -244,7 +241,7 @@ class _ConversionCardState extends State<ConversionCard> {
                           child: Center(
                             child: Text(
                               text.text.isNotEmpty
-                                  ? "${topics[widget.i.type][widget.i.name].methods[dropint[widget.i.index]].getvalue(edits[widget.i.index][0], dropint2[widget.i.index], dropint[widget.i.index], widget.i.type == 'Your Conversions')}"
+                                  ? "${topics[widget.i.type]![widget.i.name].methods[dropint[widget.i.index]].getvalue(edits[widget.i.index][0], dropint2[widget.i.index], dropint[widget.i.index], widget.i.type == 'Your Conversions')}"
                                   : '',
                               style: TextStyle(
                                   fontSize: 22, fontWeight: FontWeight.bold),

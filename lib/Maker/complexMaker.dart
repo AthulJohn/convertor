@@ -319,7 +319,7 @@ class FactorInputer extends StatefulWidget {
   final int no;
   final String name;
   final List<String> units;
-  FactorInputer({this.name, this.no, this.units});
+  FactorInputer({required this.name, required this.no, required this.units});
   @override
   _FactorInputerState createState() => _FactorInputerState();
 }
@@ -339,16 +339,11 @@ class _FactorInputerState extends State<FactorInputer> {
   ];
 
   bool isNumeric(String s) {
-    if (s == null) {
-      return false;
-    }
-    return double.parse(s) != null;
+    return double.tryParse(s) != null;
   }
 
   int getl(List lst, {int sub = 0}) {
-    if (lst == null)
-      return 0;
-    else if (lst.length - sub < 0)
+    if (lst.length - sub < 0)
       return 0;
     else
       return lst.length - sub;
@@ -369,7 +364,7 @@ class _FactorInputerState extends State<FactorInputer> {
   }
 
   void topicadd() {
-    topics['Your Conversions'][widget.name] = Conversion(2, [
+    topics['Your Conversions']![widget.name] = Conversion(2, [
       for (int i = 0; i < widget.no; i++)
         Method(
             widget.units[i],
@@ -613,7 +608,7 @@ class _FactorInputerState extends State<FactorInputer> {
                                 topicadd();
                                 localadd();
                               } catch (e) {
-                                debugPrint(e);
+                                debugPrint(e.toString());
                               }
                               Navigator.pop(context);
                             },

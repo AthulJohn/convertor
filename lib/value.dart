@@ -42,7 +42,7 @@ class Method {
   Decimal getvalue(double vals, int ind, int ind2, bool isusers) {
     List<Decimal> stack = [];
     Decimal var2 = Decimal.zero, var1 = Decimal.zero;
-    int asc;
+    int asc = 48;
     void dooperation(int pos) {
       if (asc >= 48 && asc <= 57)
         stack.add(Decimal.parse(consts[pos][asc - 48].toString()));
@@ -117,9 +117,7 @@ class Method {
         dooperation(ind + 1);
       }
     }
-    return stack != null
-        ? Decimal.parse(stack.removeLast().toStringAsFixed(8))
-        : 0;
+    return Decimal.parse(stack.removeLast().toStringAsFixed(8));
   }
 }
 

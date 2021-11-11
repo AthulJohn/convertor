@@ -48,7 +48,7 @@ void fetchAlbum() async {
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
       // then parse the JSON.
-      topics['Daily Life']['Currency'] =
+      topics['Daily Life']!['Currency'] =
           Conversion(2, fromJson(jsonDecode(response.body)));
     } else {
       // If the server did not return a 200 OK response,
@@ -87,7 +87,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-PageController cont;
+PageController cont = PageController();
 
 class MyHomePage extends StatefulWidget {
   @override

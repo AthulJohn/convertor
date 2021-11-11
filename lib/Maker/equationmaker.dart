@@ -6,7 +6,7 @@ class Equationer extends StatefulWidget {
   final int no;
   final List<String> units;
   final String name;
-  Equationer({this.name, this.no, this.units});
+  Equationer({required this.name, required this.no, required this.units});
   @override
   _EquationerState createState() => _EquationerState();
 }
@@ -15,8 +15,8 @@ enum InputState { starters, number, numberOrOperators, operators }
 
 class _EquationerState extends State<Equationer> {
   PageController pageController = PageController();
-  List<List<String>> factors;
-  List<List<String>> uifactors;
+  List<List<String>> factors = [];
+  List<List<String>> uifactors = [];
   InputState inputState = InputState.starters;
 
   List<List<String>> equationsc = [
@@ -60,7 +60,7 @@ class _EquationerState extends State<Equationer> {
   }
 
   void topicadd() {
-    topics['Your Conversions'][widget.name] = Conversion(2, [
+    topics['Your Conversions']![widget.name] = Conversion(2, [
       for (int i = 0; i < widget.no; i++)
         Method(
             widget.units[i],
@@ -1465,7 +1465,7 @@ class _EquationerState extends State<Equationer> {
 class NumberButton extends StatelessWidget {
   final String num;
   final Function callBack;
-  NumberButton({this.num, this.callBack});
+  NumberButton({required this.num, required this.callBack});
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -1488,7 +1488,7 @@ class OperatorButton extends StatelessWidget {
   final String op;
   final Function callBack;
   final double size;
-  OperatorButton({this.op, this.callBack, this.size = 25});
+  OperatorButton({required this.op, required this.callBack, this.size = 25});
   @override
   Widget build(BuildContext context) {
     return Expanded(

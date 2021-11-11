@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'Storage/storage.dart';
 import 'value.dart';
 
@@ -13,7 +13,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   void deletefromtopics(String i) {
     setState(() {
-      topics['Your Conversions'].remove(i);
+      topics['Your Conversions']!.remove(i);
     });
   }
 
@@ -26,24 +26,24 @@ class _HomeState extends State<Home> {
   List<Map<String, String>> searched = [];
   bool searching = false;
 
-  Map<String, Icon> icons = {
-    'Length': Icon(FlutterIcons.ruler_ent),
-    'Weight': Icon(FlutterIcons.balance_scale_faw),
-    'Volume': Icon(FlutterIcons.test_tube_mco),
-    'Area': Icon(FlutterIcons.area_chart_faw),
-    'Temperature': Icon(FlutterIcons.thermometer_faw),
-    'Time': Icon(FlutterIcons.ios_time_ion),
-    'Angle': Icon(FlutterIcons.time_slot_ent),
-    'Data': Icon(FlutterIcons.database_ent),
-    'Speed': Icon(FlutterIcons.speedometer_medium_mco),
-    'Gold': Icon(FlutterIcons.podium_gold_mco),
-    'Land': Icon(FlutterIcons.landscape_mdi),
-    'Energy': Icon(FlutterIcons.energy_sli),
-    'Force': Icon(FlutterIcons.repo_force_push_oct),
-    'Currency': Icon(FlutterIcons.currency_usd_mco),
-    'Density': Icon(FlutterIcons.cup_water_mco),
-    'Cookery': Icon(FlutterIcons.bowl_ent),
-    'Pressure': Icon(FlutterIcons.speedometer_slow_mco)
+  Map<String, FaIcon> icons = {
+    'Length': FaIcon(FontAwesomeIcons.ruler),
+    'Weight': FaIcon(FontAwesomeIcons.weightHanging),
+    'Volume': FaIcon(FontAwesomeIcons.cube),
+    'Area': FaIcon(FontAwesomeIcons.rulerCombined),
+    'Temperature': FaIcon(FontAwesomeIcons.temperatureHigh),
+    'Time': FaIcon(FontAwesomeIcons.clock),
+    'Angle': FaIcon(FontAwesomeIcons.greaterThan),
+    'Data': FaIcon(FontAwesomeIcons.database),
+    'Speed': FaIcon(FontAwesomeIcons.tachometerAlt),
+    'Gold': FaIcon(FontAwesomeIcons.coins),
+    'Land': FaIcon(FontAwesomeIcons.mountain),
+    'Energy': FaIcon(FontAwesomeIcons.plug),
+    'Force': FaIcon(FontAwesomeIcons.compressAlt),
+    'Currency': FaIcon(FontAwesomeIcons.rupeeSign),
+    'Density': FaIcon(FontAwesomeIcons.burn),
+    'Cookery': FaIcon(FontAwesomeIcons.blender),
+    'Pressure': FaIcon(FontAwesomeIcons.bullseye),
   };
 
   @override
@@ -66,7 +66,7 @@ class _HomeState extends State<Home> {
                   return;
                 }
                 for (var i in topics.keys) {
-                  for (String j in topics[i].keys) {
+                  for (String j in topics[i]!.keys) {
                     if (j.toLowerCase().startsWith(val.toLowerCase()))
                       searched.add({'Selection': i, 'Conversion': j});
                     print(j + ' ' + val + '${j.startsWith(val)}');
@@ -117,8 +117,8 @@ class _HomeState extends State<Home> {
                                     cards.insert(
                                         0,
                                         Cards(
-                                            searched[j]['Selection'],
-                                            searched[j]['Conversion'],
+                                            searched[j]['Selection'] ?? "",
+                                            searched[j]['Conversion'] ?? "",
                                             cards.length));
 
                                     widget.cont.nextPage(
@@ -129,9 +129,10 @@ class _HomeState extends State<Home> {
                                   //margin: EdgeInsets.all(0),
                                   child: Center(
                                     child: Text(
-                                      searched[j]['Selection'] +
-                                          ' / ' +
-                                          searched[j]['Conversion'],
+                                      searched[j]['Selection'] ??
+                                          "" +
+                                              ' / ' +
+                                              searched[j]['Conversion']!,
                                       style: TextStyle(
                                         fontSize: 25,
                                       ),
@@ -145,23 +146,23 @@ class _HomeState extends State<Home> {
                                 flex: 1,
                                 child: InkWell(
                                     onTap: () {
-                                      deletecards(searched[j]['Conversion']);
+                                      deletecards(searched[j]['Conversion']!);
                                       deletefromtopics(
-                                          searched[j]['Conversion']);
+                                          searched[j]['Conversion']!);
                                       deletefromlocal(
-                                          searched[j]['Conversion']);
+                                          searched[j]['Conversion']!);
                                     },
                                     child: Icon(Icons.delete)),
                               )
                             else
                               Expanded(
                                   flex: 1,
-                                  child: icons[searched[j]['Conversion']])
+                                  child: icons[searched[j]['Conversion']]!)
                           ],
                         )),
                   )
               else
-                for (var i in topics[select].keys)
+                for (var i in topics[select]!.keys)
                   Container(
                     height: 75,
                     child: Card(
@@ -211,7 +212,7 @@ class _HomeState extends State<Home> {
                                     child: Icon(Icons.delete)),
                               )
                             else
-                              Expanded(flex: 1, child: icons[i])
+                              Expanded(flex: 1, child: icons[i]!)
                           ],
                         )),
                   ),

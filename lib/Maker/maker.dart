@@ -16,7 +16,12 @@ class _SelectorState extends State<Selector> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: Text('Make a conversion'),
+          backgroundColor: colors[1],
+          title: Text(
+            'Make a conversion',
+            style: TextStyle(color: Colors.black),
+          ),
+          iconTheme: IconThemeData(color: Colors.black),
         ),
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 7),
@@ -138,36 +143,59 @@ class _SelectorState extends State<Selector> {
                 child: Row(
                   children: [
                     Expanded(
-                      child: TextButton(
-                        child: Text(
-                          "Exit",
-                          style: TextStyle(fontSize: 25),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextButton(
+                          style: ButtonStyle(
+                              side: MaterialStateProperty.all(
+                                  BorderSide(color: Colors.black, width: 0.5)),
+                              foregroundColor:
+                                  MaterialStateProperty.all(Colors.black)),
+                          child: Text(
+                            "Exit",
+                            style: TextStyle(fontSize: 25),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
                         ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
                       ),
                     ),
                     Expanded(
-                      child: TextButton(
-                          onPressed: () {
-                            if (selectedsimple)
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          SimpleMaker(name)));
-                            else
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          ComplexMaker(name)));
-                          },
-                          child: Text(
-                            'Create',
-                            style: TextStyle(fontSize: 25),
-                          )),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextButton(
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(colors[1]),
+                              foregroundColor:
+                                  MaterialStateProperty.all(Colors.black),
+                            ),
+                            onPressed: () {
+                              if (name != "") {
+                                if (selectedsimple)
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                              SimpleMaker(name)));
+                                else
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                              ComplexMaker(name)));
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                    content: Text(
+                                        "Please enter a name for the conversion")));
+                              }
+                            },
+                            child: Text(
+                              'Create',
+                              style: TextStyle(fontSize: 25),
+                            )),
+                      ),
                     ),
                   ],
                 ),
@@ -201,10 +229,7 @@ class _SimpleMakerState extends State<SimpleMaker> {
       'Please enter the next unit of your conversion. eg: Kilogram\nFor conversion factor, Enter "how much of this unit is equal to the first unit?" Eg: 0.001 (0.001 Kg = 1 g)';
 
   bool isNumeric(String s) {
-    if (s == null) {
-      return false;
-    }
-    return double.parse(s) != null;
+    return double.tryParse(s) != null;
   }
 
   void localadd() {
@@ -223,7 +248,7 @@ class _SimpleMakerState extends State<SimpleMaker> {
     List<List<double>> convs = List.generate(no, (index) {
       return [1 / factors[index][0]];
     });
-    topics['Your Conversions'][widget.name] = Conversion(2, [
+    topics['Your Conversions']![widget.name] = Conversion(2, [
       for (int i = 0; i < no; i++) Method(units[i], "", ["D"], convs)
     ]);
   }
@@ -232,7 +257,12 @@ class _SimpleMakerState extends State<SimpleMaker> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Simple Conversion Maker'),
+          backgroundColor: colors[1],
+          title: Text(
+            'Simple Conversion Maker',
+            style: TextStyle(color: Colors.black),
+          ),
+          iconTheme: IconThemeData(color: Colors.black),
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -344,7 +374,8 @@ class _SimpleMakerState extends State<SimpleMaker> {
                                         borderRadius:
                                             BorderRadius.circular(10))),
                               ),
-                              child: Text("+ Add Unit"),
+                              child: Text("+ Add Unit",
+                                  style: TextStyle(color: Colors.black)),
                               onPressed: () {
                                 setState(() {
                                   if (factors.length == no &&

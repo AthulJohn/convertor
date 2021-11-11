@@ -22,7 +22,7 @@ class _ConvertorState extends State<Convertor> {
     super.dispose();
   }
 
-  bool myInterceptor(bool stopDefaultButtonEvent) {
+  bool myInterceptor(bool stopDefaultButtonEvent, RouteInfo routeInfo) {
     if (FocusScope.of(context).hasFocus) FocusScope.of(context).unfocus();
     widget.cont.previousPage(
         duration: Duration(milliseconds: 500), curve: Curves.easeInToLinear);
@@ -31,7 +31,7 @@ class _ConvertorState extends State<Convertor> {
 
   // List<TextEditingController> _text = List.generate(cards.length,
   //     (index) => TextEditingController(text: '${edits[index][0]}'));
-  int index;
+  // int index=0;
   //List<int> v1=0,v2=1;
 
   @override

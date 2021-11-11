@@ -1,6 +1,6 @@
 import 'package:convertor/value.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class About extends StatelessWidget {
@@ -105,7 +105,7 @@ class About extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton(
-                    icon: Icon(FlutterIcons.gmail_mco),
+                    icon: FaIcon(FontAwesomeIcons.envelope),
                     onPressed: () async {
                       if (await canLaunch(
                           'mailto:athulpulickaljohn@gmail.com')) {
@@ -116,7 +116,7 @@ class About extends StatelessWidget {
                     },
                   ),
                   IconButton(
-                    icon: Icon(FlutterIcons.github_box_mco),
+                    icon: FaIcon(FontAwesomeIcons.github),
                     onPressed: () async {
                       if (await canLaunch('https://github.com/AthulJohn')) {
                         await launch('https://github.com/AthulJohn');
@@ -126,7 +126,7 @@ class About extends StatelessWidget {
                     },
                   ),
                   IconButton(
-                    icon: Icon(FlutterIcons.linkedin_mco),
+                    icon: FaIcon(FontAwesomeIcons.linkedin),
                     onPressed: () async {
                       if (await canLaunch(
                           'https://www.linkedin.com/in/athuljohnprofile/')) {
